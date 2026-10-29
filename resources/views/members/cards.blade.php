@@ -1,0 +1,10 @@
+@extends('layouts.app', ['pageTitle' => 'KTA Choplug No Brain', 'pageDescription' => 'Pilih anggota untuk melihat, mencetak, atau mengunduh KTA.'])
+
+@section('content')
+<section class="card border-0 shadow-sm">
+    <div class="card-header bg-white py-3"><h5 class="card-title fw-semibold mb-0">KTA Choplug No Brain</h5></div>
+    <div class="card-body border-bottom"><form method="GET" action="{{ route('members.cards') }}" class="row g-2"><div class="col-12 col-md-5"><label class="visually-hidden" for="cardSearch">Cari anggota</label><input class="form-control form-control-sm" id="cardSearch" name="q" value="{{ $search }}" placeholder="Cari nama, julukan, atau telepon..."></div><div class="col-6 col-md-2 d-grid"><button class="btn btn-primary btn-sm"><i class="bi bi-search me-1"></i>Cari</button></div>@if($search)<div class="col-6 col-md-2 d-grid"><a class="btn btn-outline-secondary btn-sm" href="{{ route('members.cards') }}">Reset</a></div>@endif</form></div>
+    <div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th>Anggota</th><th>Nomor telepon</th><th>Status</th><th class="text-end">Kartu</th></tr></thead><tbody>@forelse($members as $member)<tr><td><div class="fw-semibold">{{ $member->name }}</div>@if($member->nickname)<small class="text-secondary">{{ $member->nickname }}</small>@endif</td><td>{{ $member->phone ?: '-' }}</td><td>@if($member->is_active)<span class="badge text-bg-success">Aktif</span>@else<span class="badge text-bg-secondary">Tidak aktif</span>@endif</td><td class="text-end"><a class="btn btn-outline-primary btn-sm" href="{{ route('members.card', $member) }}"><i class="bi bi-card-heading me-1"></i>Buka KTA</a></td></tr>@empty<tr><td colspan="4" class="text-center text-secondary py-4">Tidak ada anggota yang cocok.</td></tr>@endforelse</tbody></table></div>
+    @if($members->hasPages())<div class="card-footer bg-white">{{ $members->links() }}</div>@endif
+</section>
+@endsection
