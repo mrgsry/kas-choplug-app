@@ -184,6 +184,16 @@ class DashboardController extends Controller
         return view('members.index', compact('members', 'search'));
     }
 
+
+    public function memberPhoto(string $filename)
+    {
+        abort_unless($filename === basename($filename), 404);
+
+        $path = 'members/'.$filename;
+        abort_unless(Storage::disk('public')->exists($path), 404);
+
+        return Storage::disk('public')->response($path);
+    }
     public function memberCards(Request $request)
     {
         $search = trim((string) $request->query('q', ''));

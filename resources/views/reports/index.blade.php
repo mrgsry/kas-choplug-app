@@ -12,7 +12,7 @@
 
 <article class="report-sheet p-4 p-md-5 shadow-sm">
     <header class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
-        <div class="d-flex align-items-center gap-3"><img src="{{ asset('storage/img/choplug.jpeg') }}" alt="Logo Choplug" class="report-header-logo" style="width:64px;height:64px;object-fit:cover"><div><div class="small text-uppercase fw-semibold print-navy">Choplug Portal</div><h1 class="h3 fw-bold mb-1 print-navy">Laporan pembayaran iuran</h1><div class="text-secondary">{{ $start->translatedFormat('F Y') }} - {{ $month->translatedFormat('F Y') }}</div></div></div>
+        <div class="d-flex align-items-center gap-3"><img src="{{ asset('images/choplug.jpeg') }}" alt="Logo Choplug" class="report-header-logo" style="width:64px;height:64px;object-fit:cover"><div><div class="small text-uppercase fw-semibold print-navy">Choplug Portal</div><h1 class="h3 fw-bold mb-1 print-navy">Laporan pembayaran iuran</h1><div class="text-secondary">{{ $start->translatedFormat('F Y') }} - {{ $month->translatedFormat('F Y') }}</div></div></div>
         <div class="text-end small text-secondary"><i class="bi bi-calendar3 me-1"></i>Dicetak {{ now()->translatedFormat('d F Y') }}</div>
     </header>
 

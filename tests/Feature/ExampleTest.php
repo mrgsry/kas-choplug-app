@@ -51,6 +51,7 @@ class ExampleTest extends TestCase
         $this->get('/reports?month=2026-10')
             ->assertOk()
             ->assertSee('Laporan pembayaran iuran')
+            ->assertSee('/images/choplug.jpeg')
             ->assertSee('Nadia Putri')
             ->assertSee('Belum lunas')
             ->assertSee('Cetak A4');
@@ -205,6 +206,11 @@ class ExampleTest extends TestCase
         $member = \App\Models\Member::firstOrFail();
         $this->assertSame('Nad', $member->nickname);
         Storage::disk('public')->assertExists($member->photo_path);
+        $this->assertSame('/member-photos/'.basename($member->photo_path), $member->photo_url);
+        $this->get('/members')->assertOk()
+            ->assertSee('src="'.$member->photo_url.'"', false)
+            ->assertSee('data-member-photo="'.$member->photo_url.'"', false);
+        $this->get($member->photo_url)->assertOk();
 
         $oldPhoto = $member->photo_path;
         $this->post("/members/{$member->id}", [
@@ -234,7 +240,8 @@ class ExampleTest extends TestCase
             ->assertSee('aspect-ratio:1.586/1', false)
             ->assertSee('KTA Choplug No Brain')
             ->assertSee('Logo Choplug Portal')
-            ->assertSee('/storage/img/choplug.jpeg')
+            ->assertSee('/images/choplug.jpeg')
+            ->assertDontSee('/images/choplug.svg')
             ->assertSee('width:72px;height:72px', false)
             ->assertSee('font-size:26px', false)
             ->assertSee('Unduh PNG')

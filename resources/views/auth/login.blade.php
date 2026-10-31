@@ -9,7 +9,7 @@
 <main class="login-layout">
     <section class="login-brand-panel" aria-label="Choplug Portal">
         <div class="login-brand-content">
-            <img class="login-brand-logo" src="{{ asset('storage/img/choplug.jpeg') }}" alt="Logo Choplug">
+            <img class="login-brand-logo" src="{{ asset('images/choplug.jpeg') }}" alt="Logo Choplug">
             <div class="login-brand-copy"><p class="login-eyebrow">CHOPLUG PORTAL</p><h1>Pengelolaan kas dan iuran anggota.</h1><p>Masuk untuk melanjutkan ke ruang administrasi Choplug.</p></div>
         </div>
         <div class="login-brand-footer">Choplug Portal <span>·</span> {{ now()->format('Y') }}</div>
@@ -27,7 +27,7 @@
             </form>
             <p class="login-secure-note"><i class="bi bi-shield-lock me-1"></i>Akses hanya untuk pengguna terdaftar.</p>
         </div>
-        <div class="login-mobile-brand"><img src="{{ asset('storage/img/choplug.jpeg') }}" alt=""><span>Choplug Portal</span></div>
+        <div class="login-mobile-brand"><img src="{{ asset('images/choplug.jpeg') }}" alt=""><span>Choplug Portal</span></div>
     </section>
 </main>
 </body>

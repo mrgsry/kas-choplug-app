@@ -13,6 +13,7 @@ Route::post('/logout', [AuthController::class, 'destroy'])->middleware('auth')->
 
 Route::middleware('auth')->group(function () {
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/member-photos/{filename}', [DashboardController::class, 'memberPhoto'])->name('members.photo');
 Route::get('/reports', [DashboardController::class, 'report'])->name('reports.index');
 Route::get('/transactions', [DashboardController::class, 'transactions'])->name('transactions.index');
 Route::post('/transactions', [DashboardController::class, 'storeTransaction'])->name('transactions.store');

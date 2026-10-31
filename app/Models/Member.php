@@ -14,6 +14,13 @@ class Member extends Model
         return ['joined_at' => 'date', 'is_active' => 'boolean'];
     }
 
+    public function getPhotoUrlAttribute(): ?string
+    {
+        return $this->photo_path
+            ? route('members.photo', ['filename' => basename($this->photo_path)], false)
+            : null;
+    }
+
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);
